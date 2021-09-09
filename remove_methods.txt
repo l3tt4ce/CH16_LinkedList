@@ -1,0 +1,33 @@
+public void remove(int index) {
+	if (index < 0 || index > size)
+		throw new IndexOutOfBoundsException("index: " + index);
+	ListNode<E> current = nodeAt(index - 1);
+	current.next = current.next.next;
+	current.next.prev = current;
+	size--;
+}
+
+public void removeAll(List<E> list){
+	int index = 0;
+	for (E value : this){
+		for (E listValue : list){
+			if (value.equals(listValue)){
+				this.remove(index);
+				index--;
+			}
+        }
+		index++;
+	}
+}
+public boolean remove(Object o){
+	ListNode<E> current = front.next;
+	while (current != back){
+		if (current.data.equals(o)){
+			remove(indexOf(current.data));
+			size--;
+			return true;
+		}
+		current = current.next;
+	}
+	return false;
+}

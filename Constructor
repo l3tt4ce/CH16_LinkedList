@@ -1,0 +1,11 @@
+public class LinkedList<E> implements List<E>{
+    private ListNode<E> front;
+    private ListNode<E> back;
+    private int size;
+
+    public LinkedList(){
+        front = new ListNode<E>(null);
+        back = new ListNode<E>(null);
+        clear();
+    }
+}

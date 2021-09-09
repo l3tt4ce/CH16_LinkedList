@@ -1,0 +1,27 @@
+public void add(E value) {
+	add(size, value);
+}
+
+public void add(int index, E value){
+	if (index < 0 || index > size)
+		throw new IndexOutOfBoundsException("index: " + index);
+	ListNode<E> current = nodeAt(index - 1);
+	ListNode<E> newNode = new ListNode<>(value, current.next, current);
+	current.next = newNode;
+	newNode.next.prev = newNode;
+	size++;
+}
+
+public void set(int index, E value) {
+	checkIndex(index);
+	ListNode<E> current = nodeAt(index - 1);
+	current.data = value;
+}
+
+public void addAll(int index, List<E> list){
+	checkIndex(index);
+	for (E value : list){
+		add(index, value);
+	}
+	size+=list.size();
+}
